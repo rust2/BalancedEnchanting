@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "package": "tfar.balancedenchanting.mixin",
+  "refmap": "mixins.balancedenchanting.refmap.json",
+  "mixins": [
+    "EnchantmentContainerMixin",
+    "PlayerEntityMixin",
+    "RepairContainerMixin"
+  ],
+  "client": [],
+  "server": []
+}
