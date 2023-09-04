@@ -12,7 +12,7 @@ public class RepairContainerMixin
 {
     @Redirect(
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;addExperienceLevel(I)V"),
-            method = "onTake"
+            method = "onTake(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;"
     )
     private void balancedAnvil(PlayerEntity playerEntity, int levels)
     {
