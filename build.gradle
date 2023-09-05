@@ -97,23 +97,18 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 import org.apache.tools.ant.filters.ReplaceTokens
 
 // Process resources on build (populate properties to mods.toml)
-processResources() {
-    // todo: run this any time build happens
-    from(sourceSets.main.resources.srcDirs) {
-        include 'META-INF/mods.toml'
-
-        // Replace mod id, name, version...
-        filter(ReplaceTokens, tokens: [
-                'mod_id'         : mod_id,
-                'mod_name'       : mod_name,
-                'mod_version'    : mod_version,
-                'mod_authors'    : mod_authors,
-                'mod_description': mod_description
-        ])
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'META-INF/mods.toml'
+processResources {
+    // Tokens that gonna be replaced are look like: @token_name@
+    def tokens = [
+            "mod_id"         : mod_id,
+            "mod_name"       : mod_name,
+            "mod_version"    : mod_version,
+            "mod_authors"    : mod_authors,
+            "mod_description": mod_description
+    ]
+    inputs.properties(tokens)
+    filesMatching("META-INF/mods.toml") {
+        filter(ReplaceTokens, tokens: tokens)
     }
 }
 
